@@ -1,0 +1,149 @@
+.tm-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.tm-modal {
+  width: 30vw;
+  max-width: 420px;
+  min-width: 320px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 2vw;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.22s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1vw;
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .tm-close {
+    border: none;
+    background: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #666666;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+}
+
+.tm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  select,
+  input,
+  button {
+    padding: 12px;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+  }
+
+  select,
+  input[type='text'],
+  input[type='date'],
+  input[type='number'] {
+    &:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    }
+  }
+
+  .tm-row {
+    display: flex;
+    gap: 10px;
+
+    input {
+      flex: 1;
+    }
+
+    button {
+      padding: 12px 18px;
+      background-color: #F1F3F5;
+      border: 1px solid #DDDDDD;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #E9ECEF;
+      }
+    }
+  }
+
+  .tm-file {
+    input[type='file'] {
+      display: none;
+    }
+
+    span {
+      width: 100%;
+      padding: 12px;
+      border: 1px dashed #CCCCCC;
+      border-radius: 6px;
+      cursor: pointer;
+      display: block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .tm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 6px;
+
+    .tm-cancel {
+      background-color: #F1F3F5;
+      border: 1px solid #CCCCCC;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #E2E6EA;
+      }
+    }
+
+    .tm-submit {
+      background-color: #007BFF;
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #0066D6;
+      }
+    }
+  }
+}

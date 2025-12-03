@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/Register.scss'
-import { useAuth } from '../context/authContext'
+import '../../styles/Register.scss'
+import { useAuth } from '../../context/authContext'
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {

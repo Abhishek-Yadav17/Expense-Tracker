@@ -1,0 +1,29 @@
+.category-box {
+  width: 50%;
+  padding: 1.3vw;
+  background-color: #FFF;
+  border: 1px solid #EEE;
+  border-radius: 0.6vw;
+
+  h2 {
+    font-size: 1.3vw;
+    margin-bottom: 0.8vw;
+    font-weight: 600;
+  }
+
+  .category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7vw;
+
+    .category-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.7vw;
+      border-radius: 0.5vw;
+      background-color: #FAFAFA;
+      border: 1px solid #F0F0F0;
+      font-size: 1vw;
+    }
+  }
+}

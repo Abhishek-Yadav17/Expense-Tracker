@@ -1,0 +1,18 @@
+.dashboard-layout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dashboard-body {
+  display: flex;
+  height: calc(100vh - 70px);
+  overflow: hidden; 
+}
+
+.dashboard-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
