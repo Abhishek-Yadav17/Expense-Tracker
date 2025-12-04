@@ -14,16 +14,44 @@
   .category-list {
     display: flex;
     flex-direction: column;
-    gap: 0.7vw;
+    gap: 2vw;
 
     .category-row {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      padding: 0.7vw;
-      border-radius: 0.5vw;
-      background-color: #FAFAFA;
-      border: 1px solid #F0F0F0;
-      font-size: 1vw;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 0.8vw;
+
+        .icon-wrap {
+          width: 2.8vw;
+          height: 2.8vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.8vw;
+
+          i {
+            font-size: 1.4vw;
+            color: #333;
+          }
+        }
+
+        .name {
+          font-size: 1vw;
+          font-weight: 500;
+          color: #111;
+        }
+      }
+
+      .amount {
+        font-size: 1.1vw;
+        font-weight: 600;
+        color: #111;
+      }
     }
   }
 }

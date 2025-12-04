@@ -1,32 +1,45 @@
 import React from 'react'
 import '../../../../styles/ChartBox.scss'
-import { PieChart, Pie, Tooltip, ResponsiveContainer } from 'recharts'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  Tooltip,
+  ResponsiveContainer
+} from 'recharts'
 
 const ChartBox = ({ chartData }) => {
-  const income = chartData.reduce((a, b) => a + b.income, 0)
-  const expense = chartData.reduce((a, b) => a + b.expense, 0)
+
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const formatted = chartData.map(m => ({
+    ...m,
+    mlabel: months[Number(m.month.slice(5)) - 1] || m.month
+  }))
 
   return (
     <div className='chart-box'>
-      <h2>Monthly Chart</h2>
+      <div className='chart-top'>
+        <h2>Money Flow</h2>
+      </div>
 
-      {chartData.length === 0 ? (
+      {formatted.length === 0 ? (
         <p>No data for chart.</p>
       ) : (
-        <ResponsiveContainer width='100%' height={300}>
-          <PieChart>
-            <Pie
-              data={[
-                { name: 'Income', value: income, fill: '#28A745' },
-                { name: 'Expense', value: expense, fill: '#DC3545' }
-              ]}
-              dataKey='value'
-              nameKey='name'
-              outerRadius={120}
-              label
+        <ResponsiveContainer width='100%' height={320}>
+          <BarChart data={formatted} barGap={4}>
+            <XAxis
+              dataKey='mlabel'
+              tick={{ fontSize: 12 }}
+              axisLine={false}
+              tickLine={false}
             />
-            <Tooltip />
-          </PieChart>
+
+            <Bar dataKey='space' stackId='a' fill='#e8f0ef' radius={[8, 8, 0, 0]} />
+            <Bar dataKey='income' stackId='a' fill='#1C6758' radius={[8, 8, 0, 0]} />
+            <Bar dataKey='expense' stackId='a' fill='#A3D421' radius={[8, 8, 0, 0]} />
+
+            <Tooltip cursor={{ opacity: 0.2 }} />
+          </BarChart>
         </ResponsiveContainer>
       )}
     </div>

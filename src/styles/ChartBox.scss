@@ -11,9 +11,25 @@
     margin-bottom: 0.6vw;
   }
 
-  p {
-    text-align: center;
-    opacity: 0.7;
-    font-size: 1vw;
+  .recharts-wrapper {
+    overflow: visible;
+  }
+
+  .recharts-surface {
+    overflow: visible;
+  }
+
+  .recharts-cartesian-axis-tick {
+    font-size: 0.9vw;
+    fill: #666;
+  }
+
+  .recharts-bar-rectangle {
+    rx: 8px !important;
+  }
+
+  .recharts-tooltip-wrapper {
+    border-radius: 0.6vw !important;
+    overflow: hidden !important;
   }
 }

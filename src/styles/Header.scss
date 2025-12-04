@@ -1,16 +1,26 @@
 nav {
-    height: 70px;
+    height: 80px;
     width: 100%;
-    padding: 0 30px;
+    padding: 0 20px;
     background: #FFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #EEE;
 
-    h1 {
-        font-size: 22px;
-        font-weight: bold;
+    .nav-title {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 0.9vw;
+            font-weight: 100;
+        }
     }
 
     .links {
@@ -18,19 +28,63 @@ nav {
         align-items: center;
         gap: 20px;
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
+        .user-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #F9FAFB;
+            padding: 6px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            cursor: pointer;
+
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 500;
+                color: #111827;
+            }
+
+            i {
+                font-size: 18px;
+                color: #6B7280;
+            }
         }
 
-        button {
-            padding: 6px 14px;
-            background: #007bff;
-            color: #fff;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
+        .dropdown {
+            position: absolute;
+            right: 20px;
+            top: 75px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            width: 160px;
+            padding: 6px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+
+            button {
+                padding: 10px 16px;
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                font-size: 14px;
+                font-weight: 500;
+                color: #dc2626;
+                cursor: pointer;
+                border-radius: 8px;
+
+                &:hover {
+                    background: #fef2f2;
+                }
+            }
         }
     }
 }

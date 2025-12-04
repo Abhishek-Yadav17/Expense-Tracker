@@ -122,6 +122,15 @@ const Home = () => {
     setCategoryTotals(arr)
   }
 
+  const handleDelete = async (id) => {
+    try {
+      await databases.deleteDocument(DB_ID, TABLE_ID, id)
+      getLogs()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <div className='home'>
       <div className="home-top">
@@ -147,7 +156,7 @@ const Home = () => {
           <CategoryBox totals={categoryTotals} />
         </div>
         <div className="content-bottom">
-          <LogsList logs={logs} bucketId={BUCKET_ID} />
+          <LogsList logs={logs.slice(0, 5)} bucketId={BUCKET_ID} onDelete={handleDelete} />
         </div>
 
       </div>

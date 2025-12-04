@@ -2,7 +2,7 @@ import React from 'react'
 import '../../../../styles/LogsList.scss'
 import { storage } from '../../../../appwriteConfig'
 
-const LogsList = ({ logs, bucketId }) => {
+const LogsList = ({ logs, bucketId, onDelete }) => {
   return (
     <div className='logs-table-wrapper'>
       <h2>Transaction History</h2>
@@ -18,6 +18,7 @@ const LogsList = ({ logs, bucketId }) => {
             <p>Category</p>
             <p>Amount</p>
             <p>Bill</p>
+            <p>Actions</p>
           </div>
 
           {logs.map((item) => (
@@ -42,6 +43,9 @@ const LogsList = ({ logs, bucketId }) => {
                 ) : (
                   '—'
                 )}
+              </p>
+              <p className='actions'>
+                <i className='ri-delete-bin-line' onClick={() => onDelete(item.$id)}></i>
               </p>
             </div>
           ))}
