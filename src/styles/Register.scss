@@ -1,6 +1,6 @@
 .register {
   width: 100%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 5px;
 
       label {
         font-size: 14px;

@@ -8,6 +8,22 @@ nav {
     align-items: center;
     border-bottom: 1px solid #EEE;
 
+    .left-section {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .hamburger {
+        font-size: 26px;
+        cursor: pointer;
+        display: none;
+
+        @media (max-width: 768px) {
+            display: block;
+        }
+    }
+
     .nav-title {
         display: flex;
         flex-direction: column;

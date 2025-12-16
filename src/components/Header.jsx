@@ -3,16 +3,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import '../styles/Header.scss'
 
-const Header = () => {
+const Header = ({ toggleSidebar }) => {
     const navigate = useNavigate()
     const { user, logoutUser } = useAuth()
     const [open, setOpen] = useState(false)
 
     return (
         <nav>
-            <div className="nav-title">
-            <h1>Expense Tracker</h1>
-            <h4>Keep track, assess and enhance your financial performance</h4>
+            <div className="left-section">
+                <i className="ri-menu-line hamburger" onClick={toggleSidebar}></i>
+                <div className="nav-title">
+                    <h1>Expense Tracker</h1>
+                    <h4>Keep track, assess and enhance your financial performance</h4>
+                </div>
             </div>
 
             <div className="links">

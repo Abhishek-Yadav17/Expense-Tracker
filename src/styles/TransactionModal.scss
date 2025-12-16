@@ -147,3 +147,50 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .tm-modal {
+    width: 90vw !important;
+    padding: 20px;
+    max-width: none;
+  }
+
+  .tm-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .tm-form {
+    gap: 12px;
+
+    select,
+    input,
+    button {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .tm-row {
+      gap: 8px;
+
+      button {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+    }
+
+    .tm-file span {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .tm-actions {
+    gap: 10px;
+
+    .tm-cancel,
+    .tm-submit {
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+  }
+}

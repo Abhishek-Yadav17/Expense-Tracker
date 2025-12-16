@@ -2,9 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/Sidebar.scss'
 
-const Sidebar = () => {
+const Sidebar = ({ open }) => {
     return (
-        <aside className='sidebar'>
+        <aside className={`sidebar ${open ? 'open' : ''}`}>
             <h1>Menu</h1>
 
             <div className='sb-menu'>

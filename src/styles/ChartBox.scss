@@ -33,3 +33,24 @@
     overflow: hidden !important;
   }
 }
+
+@media (max-width: 768px) {
+  .chart-box {
+    width: 100% !important;
+    padding: 12px 14px;
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .recharts-wrapper {
+      height: 300px !important;
+    }
+
+    .recharts-cartesian-axis-tick {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}

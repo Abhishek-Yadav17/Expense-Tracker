@@ -85,3 +85,47 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .logs-table-wrapper {
+    overflow-x: auto; /* Enable horizontal scroll */
+    padding-bottom: 10px;
+
+    .table {
+      min-width: 650px; /* Keeps table readable */
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .table-header {
+      padding: 0.8vw;
+      font-size: 12px;
+    }
+
+    .table-row {
+      padding: 10px;
+      font-size: 13px;
+
+      .amount {
+        font-size: 14px;
+      }
+
+      .type {
+        font-size: 11px;
+        padding: 3px 6px;
+      }
+
+      .bill-img {
+        width: 45px;
+        height: 38px;
+      }
+
+      .actions i {
+        font-size: 16px;
+        padding: 4px;
+      }
+    }
+  }
+}

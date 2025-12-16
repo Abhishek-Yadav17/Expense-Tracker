@@ -1,52 +1,68 @@
-import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import '../../styles/Register.scss'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../../context/authContext'
-import { useNavigate } from 'react-router-dom'
+
+const registerSchema = z
+  .object({
+    name: z.string().min(2, "Name is required"),
+    email: z.string().email("Invalid email"),
+    password1: z.string().min(8, "Min 8 characters"),
+    password2: z.string().min(8),
+  })
+  .refine((data) => data.password1 === data.password2, {
+    message: "Passwords do not match",
+    path: ["password2"],
+  })
 
 const Register = () => {
-  const registerForm = useRef()
   const { user, registerUser } = useAuth()
   const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  })
 
   useEffect(() => {
     if (user) {
       navigate("/")
     }
-  }, [])
+  }, [user])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    const name = registerForm.current.name.value
-    const email = registerForm.current.email.value
-    const password1 = registerForm.current.password1.value
-    const password2 = registerForm.current.password2.value
-
-    if (password1 !== password2) {
-      alert("Password do not match")
-      return
+  const onSubmit = async (data) => {
+    try {
+      await registerUser(data)
+    } catch (err) {
+      alert(err.message || "User already exists")
     }
-
-    const userInfo = { name, email, password1, password2 }
-    registerUser(userInfo)
   }
 
   return (
     <div className="register">
       <div className="register-card">
-        <form ref={registerForm} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label>Name</label>
-          <input type="text" name="name" required placeholder="Enter name..." />
+          <input {...register("name")} placeholder="Enter name..." />
+          <p className="error">{errors.name?.message}</p>
 
           <label>Email</label>
-          <input type="email" name="email" required placeholder="Enter email..." />
+          <input {...register("email")} placeholder="Enter email..." />
+          <p className="error">{errors.email?.message}</p>
 
           <label>Password</label>
-          <input type="password" name="password1" placeholder="Enter password..." />
+          <input type="password" {...register("password1")} placeholder="Enter password..." />
+          <p className="error">{errors.password1?.message}</p>
 
           <label>Confirm Password</label>
-          <input type="password" name="password2" placeholder="Confirm password..." />
+          <input type="password" {...register("password2")} placeholder="Confirm password..." />
+          <p className="error">{errors.password2?.message}</p>
 
           <input type="submit" value="Register" className="btn" />
         </form>

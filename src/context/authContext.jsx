@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     const loginUser = async (userInfo) => {
         setLoading(true)
-        
+
         try {
             let response = await account.createEmailPasswordSession(
                 userInfo.email,
@@ -26,12 +26,12 @@ export const AuthProvider = ({ children }) => {
 
             setUser(accountDetails)
         } catch (error) {
-            console.error(error)
+            throw error;
         }
 
         setLoading(false)
     }
-    
+
     const logoutUser = () => {
         account.deleteSession('current')
         setUser(null)
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
             setUser(accountDetails)
         } catch (error) {
-            console.error(error)
+            throw error;
         }
 
         setLoading(false)
@@ -86,6 +86,6 @@ export const AuthProvider = ({ children }) => {
     )
 }
 
-export const useAuth = () => {return useContext(AuthContext)}
+export const useAuth = () => { return useContext(AuthContext) }
 
 export default AuthContext
