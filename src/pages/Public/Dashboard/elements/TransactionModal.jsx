@@ -54,7 +54,7 @@ const TransactionModal = ({ open, onClose, categories = [], onAdd }) => {
           </select>
 
           <select {...register("category")}>
-            {categories.map((c) => (
+            {(categories.length ? categories : ['General']).map(c => (
               <option key={c} value={c}>{c}</option>
             ))}
           </select>

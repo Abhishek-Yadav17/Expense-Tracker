@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/authContext'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutUser } from '../redux/slices/authSlice'
 import '../styles/Header.scss'
 
 const Header = ({ toggleSidebar }) => {
-    const navigate = useNavigate()
-    const { user, logoutUser } = useAuth()
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.auth)
     const [open, setOpen] = useState(false)
 
     return (
@@ -32,7 +33,7 @@ const Header = ({ toggleSidebar }) => {
 
                         {open && (
                             <div className='dropdown'>
-                                <button onClick={logoutUser}>Logout</button>
+                                <button onClick={() => dispatch(logoutUser())}>Logout</button>
                             </div>
                         )}
                     </>

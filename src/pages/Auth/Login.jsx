@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../../redux/slices/authSlice'
 import '../../styles/Login.scss'
-import { useAuth } from '../../context/authContext'
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email"),
@@ -12,8 +13,9 @@ const loginSchema = z.object({
   })
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { user, loginUser } = useAuth()
+  const { user } = useSelector(state => state.auth)
 
   const {
     register,
@@ -27,11 +29,11 @@ const Login = () => {
     if (user) {
       navigate("/")
     }
-  }, [])
+  }, [user])
 
   const onSubmit = async (data) => {
     try {
-      await loginUser(data)
+      await dispatch(loginUser(data)).unwrap()
     } catch {
       alert("Invalid email or password")
     }

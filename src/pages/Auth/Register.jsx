@@ -4,7 +4,8 @@ import '../../styles/Register.scss'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAuth } from '../../context/authContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerUser } from '../../redux/slices/authSlice'
 
 const registerSchema = z
   .object({
@@ -19,8 +20,9 @@ const registerSchema = z
   })
 
 const Register = () => {
-  const { user, registerUser } = useAuth()
+ const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { user } = useSelector(state => state.auth)
 
   const {
     register,
@@ -38,7 +40,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      await registerUser(data)
+      await dispatch(registerUser(data)).unwrap()
     } catch (err) {
       alert(err.message || "User already exists")
     }

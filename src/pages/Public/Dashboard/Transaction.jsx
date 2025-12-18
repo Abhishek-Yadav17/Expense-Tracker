@@ -1,44 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import LogsList from './elements/LogsList'
-import { databases } from '../../../appwriteConfig'
-import { Query } from 'appwrite'
-import { useAuth } from '../../../context/authContext'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  fetchTransactions,
+  deleteTransaction,
+} from '../../../redux/slices/transactionSlice'
 
-const DB_ID = import.meta.env.VITE_APPWRITE_DB_ID
-const TABLE_ID = import.meta.env.VITE_APPWRITE_TABLE_ID
 const BUCKET_ID = import.meta.env.VITE_APPWRITE_BUCKET_ID
 
 const Transaction = () => {
-  const { user } = useAuth()
-  const [logs, setLogs] = useState([])
-
-  const getLogs = async () => {
-    if (!user) return
-
-    try {
-      const res = await databases.listDocuments(DB_ID, TABLE_ID, [
-        Query.equal('userId', user.$id),
-        Query.orderDesc('$createdAt')
-      ])
-      setLogs(res.documents)
-    } catch (err) {
-      console.error(err)
-    }
-  }
+  const dispatch = useDispatch()
+  const { user } = useSelector(state => state.auth)
+  const { logs } = useSelector(state => state.transactions)
 
   useEffect(() => {
-    getLogs()
+    if (user) dispatch(fetchTransactions(user.$id))
   }, [user])
 
-  const handleDelete = async (id) => {
-    try {
-      await databases.deleteDocument(DB_ID, TABLE_ID, id)
-      getLogs()
-    } catch (err) {
-      console.error(err)
-    }
+  const handleDelete = (id) => {
+    dispatch(deleteTransaction(id))
   }
-
 
   return (
     <div className='transactions-page'>
